@@ -37,7 +37,7 @@ services:
     # Configura as variáveis de ambiente dentro do container
     environment:
       MYSQL_USER: root
-      MYSQL_PASSWORD: 1234
+      MYSQL_PASSWORD: root
       MYSQL_HOST: db # Nome do service logo abaixo
       JWT_SECRET: secretJWT
       API_HOST: 'node'
@@ -59,7 +59,7 @@ services:
       - 3306:3306
       - 33060:33060
     environment:
-      MYSQL_ROOT_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: root
     networks:
       - blogs_api_net
 
