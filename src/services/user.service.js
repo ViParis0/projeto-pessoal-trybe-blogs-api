@@ -7,6 +7,11 @@ const getUser = async ({ email, password }) => {
         attributes: { exclude: ['password'] },
     });
 
+    const errorMessage = { status: 400, message: 'Invalid fields' };
+    if (!result) {
+        throw errorMessage;
+    }
+
     const token = generateToken(result.dataValues);
 
     return token;
