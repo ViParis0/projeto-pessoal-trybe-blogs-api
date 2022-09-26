@@ -8,14 +8,27 @@ const getUsers = async () => {
     return result;
 };
 
+const getUserById = async ({ id }) => {
+    const result = await User.findOne({
+        where: { id },
+        attributes: { exclude: ['password'] },
+    });
+
+    if (!result) {
+        const errorMessage = { status: 404, message: 'User does not exist' };
+        throw errorMessage;
+    }
+    return result;
+};
+
 const createUser = async ({ displayName, email, password, image }) => {
     const result = await User.findOne({
         where: { email },
         attributes: { exclude: ['password'] },
     });
 
-    const errorMessage = { status: 409, message: 'User already registered' };
     if (result) {
+        const errorMessage = { status: 409, message: 'User already registered' };
         throw errorMessage;
     }
 
@@ -29,4 +42,5 @@ const createUser = async ({ displayName, email, password, image }) => {
 module.exports = {
     createUser,
     getUsers,
+    getUserById,
 };
