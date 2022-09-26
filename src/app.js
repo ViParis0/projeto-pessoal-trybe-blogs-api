@@ -1,4 +1,5 @@
 const express = require('express');
+const loginRouter = require('./routers/login.router');
 const userRouter = require('./routers/user.router');
 
 // ...
@@ -7,7 +8,8 @@ const app = express();
 
 app.use(express.json());
 
-app.use('/login', userRouter);
+app.use('/login', loginRouter);
+app.use('/user', userRouter);
 
 app.use((error, req, res, _next) => {
     if (error.status) return res.status(error.status).json({ message: error.message });

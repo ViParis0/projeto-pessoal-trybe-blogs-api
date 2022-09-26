@@ -1,22 +1,24 @@
 const { User } = require('../models');
 const { generateToken } = require('../utils/JWT');
 
-const getUser = async ({ email, password }) => {
+const createUser = async ({ displayName, email, password, image }) => {
     const result = await User.findOne({
-        where: { email, password },
+        where: { email },
         attributes: { exclude: ['password'] },
     });
 
-    const errorMessage = { status: 400, message: 'Invalid fields' };
-    if (!result) {
+    const errorMessage = { status: 409, message: 'User already registered' };
+    if (result) {
         throw errorMessage;
     }
 
-    const token = generateToken(result.dataValues);
+    await User.create({ displayName, email, password, image });
+
+    const token = generateToken({ displayName, email, password, image });
 
     return token;
 };
 
 module.exports = {
-    getUser,
+    createUser,
 };
