@@ -1,6 +1,13 @@
 const { User } = require('../models');
 const { generateToken } = require('../utils/JWT');
 
+const getUsers = async () => {
+    const result = await User.findAll({
+        attributes: { exclude: ['password'] },
+    });
+    return result;
+};
+
 const createUser = async ({ displayName, email, password, image }) => {
     const result = await User.findOne({
         where: { email },
@@ -21,4 +28,5 @@ const createUser = async ({ displayName, email, password, image }) => {
 
 module.exports = {
     createUser,
+    getUsers,
 };

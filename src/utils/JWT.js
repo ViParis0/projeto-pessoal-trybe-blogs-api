@@ -11,7 +11,7 @@ const generateToken = (payload) => jwt.sign(payload, JWT_SECRET, jwtConfig);
 
 const authTokenValidation = (token) => {
     if (!token) {
-        const e = new Error('missing auth token');
+        const e = new Error('Token not found');
         e.status = 401;
         throw e;
     }
@@ -20,8 +20,7 @@ const authTokenValidation = (token) => {
         const instrospection = jwt.verify(token, JWT_SECRET);
         return instrospection;
     } catch (e) {
-        console.log('Err', e);
-        const err = new Error('jwt malformado');
+        const err = new Error('Expired or invalid token');
         err.status = 401;
         throw err;
     }
