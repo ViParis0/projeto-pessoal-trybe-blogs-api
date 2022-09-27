@@ -11,4 +11,6 @@ router.get('/:id', tokenValidate, userController.getUserById);
 
 router.post('/', userValidate, userController.createUser);
 
+router.delete('/me', tokenValidate, userController.deleteUser);
+
 module.exports = router;
