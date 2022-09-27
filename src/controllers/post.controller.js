@@ -9,6 +9,15 @@ const getPosts = async (req, res, next) => {
     }
 };
 
+const findPost = async (req, res, next) => {
+    try {
+        const posts = await postService.findPost(req.query);
+        res.status(200).json(posts);
+    } catch (error) {
+        next(error);
+    }
+};
+
 const getPostById = async (req, res, next) => {
     try {
         const post = await postService.getPostById(req.params);
@@ -51,4 +60,5 @@ module.exports = {
     getPostById,
     updatePost,
     deletePost,
+    findPost,
 };

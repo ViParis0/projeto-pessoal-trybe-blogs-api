@@ -5,6 +5,7 @@ const { tokenValidate } = require('../middleawres/token.middleware');
 
 const router = express.Router();
 
+router.get('/:search', tokenValidate, postController.findPost);
 router.get('/', tokenValidate, postController.getPosts);
 router.get('/:id', tokenValidate, postController.getPostById);
 router.post('/', tokenValidate, postValidate, postController.createPost);
