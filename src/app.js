@@ -2,6 +2,7 @@ const express = require('express');
 const loginRouter = require('./routers/login.router');
 const userRouter = require('./routers/user.router');
 const categoryRouter = require('./routers/category.router');
+const postRouter = require('./routers/post.router');
 
 // ...
 
@@ -12,6 +13,7 @@ app.use(express.json());
 app.use('/login', loginRouter);
 app.use('/user', userRouter);
 app.use('/categories', categoryRouter);
+app.use('/post', postRouter);
 
 app.use((error, req, res, _next) => {
     if (error.status) return res.status(error.status).json({ message: error.message });
