@@ -9,6 +9,15 @@ const getPosts = async (req, res, next) => {
     }
 };
 
+const getPostById = async (req, res, next) => {
+    try {
+        const post = await postService.getPostById(req.params);
+        res.status(200).json(post);
+    } catch (error) {
+        next(error);
+    }
+};
+
 const createPost = async (req, res, next) => {
     try {
         const post = await postService.createPost(req.body, req.user);
@@ -21,4 +30,5 @@ const createPost = async (req, res, next) => {
 module.exports = {
     createPost,
     getPosts,
+    getPostById,
 };

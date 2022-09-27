@@ -11,6 +11,23 @@ const getPosts = async () => {
     return posts;
 };
 
+const getPostById = async ({ id }) => {
+    const post = await BlogPost.findOne({
+        where: { id },
+        include: [
+            { model: Category, as: 'categories', through: { attributes: [] } },
+            { model: User, as: 'user', attributes: { exclude: ['password'] } },
+        ],
+    });
+
+    if (!post) {
+        const error = { status: 404, message: 'Post does not exist' };
+        throw error;
+    }
+
+    return post;
+};
+
 const createPost = async ({ title, content, categoryIds }, { id }) => {
     const categories = await Promise.all(categoryIds.map((value) => getCategoryById(value)));
     if (categories.some((cate) => cate === null)) {
@@ -26,4 +43,5 @@ const createPost = async ({ title, content, categoryIds }, { id }) => {
 module.exports = {
     createPost,
     getPosts,
+    getPostById,
 };
