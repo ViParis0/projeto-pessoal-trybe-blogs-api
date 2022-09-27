@@ -27,8 +27,18 @@ const createPost = async (req, res, next) => {
     }
 };
 
+const updatePost = async (req, res, next) => {
+    try {
+        const post = await postService.updatePost(req.body, req.params, req.user);
+        res.status(200).json(post);
+    } catch (error) {
+        next(error);
+    }
+};
+
 module.exports = {
     createPost,
     getPosts,
     getPostById,
+    updatePost,
 };

@@ -12,6 +12,16 @@ const postSchema = Joi.object({
     }),
 });
 
+const postUpdateSchema = Joi.object({
+    title: Joi.string().min(5).required().messages({
+        'string.empty': 'Some required fields are missing',
+    }),
+    content: Joi.string().min(5).required().messages({
+        'string.empty': 'Some required fields are missing',
+    }),
+});
+
 module.exports = {
     postSchema,
+    postUpdateSchema,
 };
