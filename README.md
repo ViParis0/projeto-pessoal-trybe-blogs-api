@@ -17,12 +17,12 @@ Este foi um projeto desenvolvido individualmente, para praticar a criação de u
 
 2. Entre no diretório que acabou de criar e depois clone o projeto:
 ```javascript
-  cd project-trivia
+  cd blogs-api
   git clone git@github.com:ViParis0/projeto-pessoal-trybe-blogs-api.git
 ```
 
 3. Acesse o diretório do projeto e depois utilize o comando **npm install** para instalar todas as dependências necessárias:
 ```javascript
-  cd projeto-pessoal-trybe-trivia
+  cd projeto-pessoal-trybe-blogs-api
   npm install
 ```
