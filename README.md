@@ -19,6 +19,7 @@ Este foi um projeto desenvolvido individualmente, para praticar a criação de u
 ```javascript
   cd blogs-api
   git clone git@github.com:ViParis0/projeto-pessoal-trybe-blogs-api.git
+  cd projeto-pessoal-trybe-blogs-api
 ```
 
 <details>
